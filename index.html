@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		Date Picker
+	</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+	.hora {
+		width: 100px;
+		height: 120px;
+/*		background-color: #ccc;*/
+		color: white;
+		position: absolute;
+		display: none;
+	}
+</style>
+<body>
+
+	<div class="jumbotron text-center">
+
+		<h1 class="h1">Date Picker</h1>
+
+		<label for="hora">Hora 1</label>
+		<input class="form-control" id="hora1" name="hora1" type="text" placeholder="Hora escolhida"></input>
+
+		<label for="hora">Hora 2</label>
+		<input class="form-control" id="hora2" name="hora2" type="text" placeholder="Hora escolhida"></input>
+
+		<label for="hora">Hora 3</label>
+		<input class="form-control" id="hora3" name="hora3" type="text" placeholder="Hora escolhida"></input>
+
+		<label for="hora">Hora 4</label>
+		<input class="form-control" id="hora4" name="hora4" type="text" placeholder="Hora escolhida"></input>
+
+		<div class="hora text-center">
+			<button>10:00</button>			
+			<button>13:00</button>			
+			<button>16:00</button>			
+			<button>18:00</button>			
+		</div>
+
+	</div>
+
+	<script>
+		$(function() {
+
+			var hora_escolha_campo;
+
+			$('input').bind('focus', function() {
+				var pos = $(this).offset();
+				var width = $(this).width();
+
+				$('.hora').css('left', pos.left + width - 50);
+				$('.hora').css('top', pos.top);
+				$('.hora').show();
+
+				hora_escolha_campo = this;
+			});
+
+			$('input').bind('blur', function() {
+				setTimeout(function() {
+					$('.hora').hide();
+				}, 200);
+				// $('.hora').hide();
+			});
+
+			$('.hora button').bind('click', function() {
+				var hora = $(this).html();
+				hora_escolha_campo.value = hora;
+			});
+		});
+	</script>
+</body>
+</html>
